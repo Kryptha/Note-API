@@ -18,7 +18,7 @@ class Api::V1::NotesController < ApplicationController
     @note = Note.new(note_params)
 
     if @note.save
-      render json: @note, status: :created, location: @note
+      render json: @note, status: :created
     else
       render json: @note.errors, status: :unprocessable_entity
     end
@@ -36,6 +36,8 @@ class Api::V1::NotesController < ApplicationController
   # DELETE /notes/1
   def destroy
     @note.destroy
+    
+    render status: :ok
   end
 
   private
